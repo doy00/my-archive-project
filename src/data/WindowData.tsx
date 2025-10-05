@@ -1,55 +1,60 @@
 import React from "react";
-import PortfolioData from "./PortfolioData";
+import styled from "styled-components";
+import { PortfolioData } from "@/data/PortfolioData";
 import { useMediaQuery } from "react-responsive";
 
-/**
- * CustomLink Props 타입 정의
- */
 interface CustomLinkProps {
   text: string;
   href: string;
   color?: string;
 }
 
+// Styled Link 컴포넌트 - Custom Link의 styled-components 컴포넌트
+const StyledLink = styled.a<{ $color: string }>`
+  text-decoration: underline;
+  pointer-events: auto;
+  color: ${(props) => props.$color};
+  letter-spacing: 0px;
+  transition: letter-spacing 0.2s ease-in-out;
+
+  &:hover {
+    letter-spacing: 1px;
+  }
+
+  &:focus {
+    outline: 2px solid ${(props) => props.$color};
+    outline-offset: 2px;
+  }
+`;
+
 /**
  * CustomLink 컴포넌트
- * - 외부 링크를 렌더링하는 재사용 가능한 링크 컴포넌트
+ * - 외부 링크를 렌더링
  * - 호버 시 letterSpacing 애니메이션 효과
  *
  * @param text - 링크에 표시될 텍스트
  * @param href - 링크 URL
  * @param color - 링크 색상 (기본값: #ee4898)
  */
-const CustomLink: React.FC<CustomLinkProps> = ({
+function CustomLink({
   text,
   href,
-  color = "#ee4898"
-}) => {
+  color = "#ee4898",
+}: CustomLinkProps): React.ReactElement {
   return (
-    <a
+    <StyledLink
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      style={{
-        textDecoration: "underline",
-        pointerEvents: "auto",
-        color,
-      }}
-      onMouseOver={(e: React.MouseEvent<HTMLAnchorElement>) =>
-        (e.currentTarget.style.letterSpacing = "1px")
-      }
-      onMouseOut={(e: React.MouseEvent<HTMLAnchorElement>) =>
-        (e.currentTarget.style.letterSpacing = "0px")
-      }
+      $color={color}
+      aria-label={`Visit ${text}`}
     >
       {text}
-    </a>
+    </StyledLink>
   );
 };
 
-/**
- * ContentBlock Props 타입 정의
- */
+
 interface ContentBlockProps {
   content: React.ReactNode;
   textAlign?: "left" | "center" | "right" | "justify";
@@ -59,8 +64,6 @@ interface ContentBlockProps {
 
 /**
  * ContentBlock 컴포넌트
- * - 팝업 창의 콘텐츠를 감싸는 레이아웃 컴포넌트
- * - 반응형 디자인 지원 (모바일/데스크톱)
  *
  * @param content - 렌더링할 콘텐츠
  * @param textAlign - 텍스트 정렬 (기본값: "left")
@@ -126,7 +129,7 @@ const socialsContent: React.ReactElement = (
  * - "( 🌐🤍🎀🫧 )" 팝업 창에 표시될 내용
  * - 웹사이트 소개 및 기술 스택, 영감 출처 정보
  */
-const siteContent = (
+const siteContent: React.ReactElement = (
   <>
     welcome to my safe space on the internet ᡣ • . • 𐭩 ♡
     <br />
@@ -155,7 +158,7 @@ const siteContent = (
  * - "૮꒰ ˶• ༝ •˶꒱ა ♡" 팝업 창에 표시될 내용
  * - 작성자 소개 및 활동 영역, 포트폴리오 링크
  */
-const bioContent = (
+const bioContent: React.ReactElement = (
   <>
     <div style={{ textAlign: "center" }}>
       ₊˚ . ⋅☁︎‧₊˚ ☾. ⋅
@@ -195,7 +198,16 @@ const bioContent = (
  * - "( Girlhood )" 팝업 창에 표시될 내용
  * - 이모지만 표시
  */
-const emojisContent = <>🎀💿🧸💫</>;
+const emojisContent: React.ReactElement = <>🎀💿🧸💫</>;
+
+/**
+ * WindowData 타입 정의
+ * - 각 키는 팝업 창 제목을 나타냄
+ * - 각 값은 JSX Element로 렌더링할 콘텐츠
+ */
+export interface WindowDataType {
+  [key: string]: React.ReactElement;
+}
 
 /**
  * WindowData 객체
@@ -209,7 +221,7 @@ const emojisContent = <>🎀💿🧸💫</>;
  * 3. "( 🌐🤍🎀🫧 )": 웹사이트 소개
  * 4. "( Girlhood )": 이모지 디스플레이
  */
-const WindowData = {
+const WindowData: WindowDataType = {
   "( Socials )": <ContentBlock content={socialsContent} padding="175px 20px" />,
   "૮꒰ ˶• ༝ •˶꒱ა ♡": (
     <ContentBlock content={bioContent} padding="195px 25px" />
