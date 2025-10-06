@@ -1,103 +1,343 @@
-import Image from "next/image";
+// [ ] home(dashboard) 탭 마이그레이션
 
-export default function Home() {
+import React, { useState, useContext, useEffect, useRef } from "react";
+import Fade from "react-reveal/Fade";
+import DesktopIcon from "../Items/DesktopIcon";
+import Folder from "../Items/Folder";
+import FileData from "../data/FileData";
+import WindowData from "../../Data/WindowData";
+import "@animated-burgers/burger-squeeze/dist/styles.css";
+import { ThemeContext } from "../../ThemeContext";
+import { Screen } from "../../App";
+import Popup from "../Items/Popup";
+import { useMediaQuery } from "react-responsive";
+
+const Header = (props) => {
+  const isMobile = useMediaQuery({
+    query: "(max-width: 767px)",
+  });
+  const [isGridLayout, setIsGridLayout] = useState(false);
+  const [openStates, setOpenStates] = useState({
+    0: [true, false, true, true],
+  });
+  const [zIndex, setZIndex] = useState(1);
+  const { cursorString, setCursorString } = useContext(ThemeContext);
+  const [triggerResize, setTriggerResize] = useState(false);
+  const [isFoldersVisible, setIsFoldersVisible] = useState(true);
+  const parentRef = useRef(null);
+
+  useEffect(() => {
+    let startX = 0;
+    let startY = 0;
+
+    const handleTouchStart = (e) => {
+      const touch = e.touches[0];
+      startX = touch.clientX;
+      startY = touch.clientY;
+    };
+
+    const handleTouchMove = (e) => {
+      const touch = e.touches[0];
+      const diffX = touch.clientX - startX;
+      const diffY = touch.clientY - startY;
+
+      if (Math.abs(diffY) > Math.abs(diffX)) {
+        e.preventDefault();
+      }
+    };
+
+    document.addEventListener("touchstart", handleTouchStart, {
+      passive: true,
+    });
+    document.addEventListener("touchmove", handleTouchMove, { passive: false });
+
+    return () => {
+      document.removeEventListener("touchstart", handleTouchStart);
+      document.removeEventListener("touchmove", handleTouchMove);
+    };
+  }, []);
+
+  const isElementInViewport = (el) => {
+    const rect = el.getBoundingClientRect();
+    return (
+      rect.top >= 0 &&
+      rect.left >= 0 &&
+      rect.bottom <=
+        (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (parentRef.current) {
+        const visible = isElementInViewport(parentRef.current);
+        if (visible !== isFoldersVisible) {
+          setIsFoldersVisible(visible);
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const handleFullScreenClick = () => {
+    setTriggerResize((prevState) => !prevState);
+  };
+
+  const handleFolderOpen = (index, isOpen, key) => {
+    setOpenStates((prevOpenStates) => {
+      const newOpenStates = { ...prevOpenStates };
+      newOpenStates[key][index] = isOpen;
+      return newOpenStates;
+    });
+  };
+
+  const toggleButton = () => {
+    setIsGridLayout((prevIsGridLayout) => !prevIsGridLayout);
+  };
+
+  const handleHoverChange = (hoverState, hoverString) => {
+    setCursorString(hoverState ? hoverString || "" : "");
+  };
+
+  const handleFolderHoverChange = (hoverState, folderIndex) => {
+    if (hoverState && folderIndex !== undefined) {
+      setCursorString(display_strings[folderIndex]);
+    } else {
+      setCursorString("");
+    }
+  };
+
+  const handleSortHoverChange = () => {
+    setCursorString(cursorString === "" ? "Shuffle!" : "");
+  };
+
+  const handleFullscreenHoverChange = () => {
+    setCursorString(cursorString === "" ? "fullscreen!" : "");
+  };
+
+  const folders = ["Games", "Fandoms", "Wikis", "About Me"];
+  const display_folders = ["games", "fandoms", "tools", "About Me"];
+  const display_strings = [
+    "( Gamemaking as playing god )",
+    "( Parallel universes of fictional worlds )",
+    "( Can we build a collective truth ? )",
+    "( Autofiction as therapy )",
+  ];
+  let alignX = 0;
+  let alignY = 30;
+  let counter = 0;
+  const photoData = {
+    place: "( Internet dwelling *ੈ✩‧₊˚ )",
+    image: window.location.origin + "/images/bgfinal.png",
+  };
+
+  const renderItems = () => {
+    if (isFoldersVisible) {
+      return display_folders.map((folder, ind) =>
+        openStates && openStates[0][ind]
+          ? FileData[folder].map((image) => {
+              if (
+                !image.border &&
+                !(isGridLayout && image.hoverString === "")
+              ) {
+                alignY = counter % 5 === 0 ? 10 : alignY + 16;
+                alignX = counter % 5 === 0 ? alignX + 11 : alignX;
+                if (counter === 0) {
+                  alignX = 5;
+                }
+                counter++;
+              }
+              return image.border && isGridLayout ? (
+                <></>
+              ) : image.border ? (
+                <Popup
+                  key={image.url}
+                  url={image.url}
+                  setZIndex={setZIndex}
+                  zIndex={zIndex}
+                  setShowCursor={setCursorString}
+                  border={true}
+                  hoverString={image.hoverString}
+                  onHoverChange={handleHoverChange}
+                  src={image.src}
+                  scale={image.scale}
+                  x={isGridLayout ? alignX : image.x}
+                  y={isGridLayout ? alignY : image.y}
+                  triggerResize={triggerResize}
+                  isGridLayout={isGridLayout}
+                  content={WindowData[image.hoverString]}
+                />
+              ) : (
+                !((isGridLayout || !isMobile) && image.hoverString === "") && (
+                  <DesktopIcon
+                    key={image.url}
+                    url={image.url}
+                    setZIndex={setZIndex}
+                    zIndex={zIndex}
+                    setShowCursor={setCursorString}
+                    border={image.border ? true : false}
+                    hoverString={image.hoverString}
+                    onHoverChange={handleHoverChange}
+                    src={
+                      image.src ? window.location.origin + "/" + image.src : ""
+                    }
+                    scale={image.scale}
+                    x={isGridLayout ? alignX : image.x}
+                    y={isGridLayout ? alignY : image.y}
+                    triggerResize={triggerResize}
+                    isGridLayout={isGridLayout}
+                    iconText={image.iconText}
+                  />
+                )
+              );
+            })
+          : null
+      );
+    }
+    return null;
+  };
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <>
+      <header id="home">
+        <Fade duration={500} delay={200}>
+          <div
+            className="banner"
+            style={{
+              transition: "height 1s ease",
+              display: "inline-block",
+              margin: "0px auto",
+              padding: "0px",
+              width: "100%",
+              maxWidth: "100%",
+              textAlign: "center",
+              position: "relative",
+              height: "100%",
+              overflow: "hidden",
+              clipPath: "inset(0 0 0 0)",
+            }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+            <div
+              className="bottom-left-2"
+              style={{ top: "15px", display: "none" }}
+            >
+              &#40; 🌐🌷 &#41;
+            </div>
+            <div
+              className="bottom-right"
+              style={{ bottom: "20px" }}
+              onClick={() => {
+                setCursorString("");
+                props.setDesktopScreen(Screen.PORTFOLIO);
+                handleFullScreenClick();
+              }}
+            >
+              <span
+                style={{
+                  zIndex: 1000,
+                  cursor: "pointer",
+                }}
+                id="mobile-only"
+                onMouseEnter={handleFullscreenHoverChange}
+                onMouseLeave={handleFullscreenHoverChange}
+              >
+                &#40; Projects &#41;
+              </span>
+            </div>
+            <div
+              className="bottom-leftt"
+              style={{ bottom: "20px" }}
+              onClick={() => {
+                props.setisFoldersOff(!props.isFoldersOff);
+              }}
+            >
+              <span
+                style={{
+                  zIndex: 1000,
+                  cursor: "pointer",
+                }}
+                id="mobile-only"
+              >
+                &#40; Menus &#41;
+              </span>
+            </div>
+            <div className="container" style={{ zIndex: 1 }}>
+              <div onClick={toggleButton} className="top-left">
+                {isGridLayout ? (
+                  <span
+                    id="play-button"
+                    onMouseEnter={handleSortHoverChange}
+                    onMouseLeave={handleSortHoverChange}
+                  >
+                    &#40; Shuffle{" "}
+                    <i
+                      style={{ fontSize: 11 }}
+                      className="fa fa-random"
+                      aria-hidden="true"
+                    ></i>
+                    &#41;
+                  </span>
+                ) : (
+                  <span
+                    id="play-button"
+                    onMouseEnter={handleSortHoverChange}
+                    onMouseLeave={handleSortHoverChange}
+                  >
+                    {" "}
+                    &#40; Sort &nbsp;
+                    <i style={{ fontSize: 8 }} className="fas fa-play"></i>{" "}
+                    &#41;
+                  </span>
+                )}{" "}
+              </div>
+            </div>
+            <div className="hover-container" ref={parentRef}>
+              <img
+                style={{ opacity: 0 }}
+                id="headerpic"
+                draggable="false"
+                src={photoData.image}
+                loading="lazy"
+                alt="Background"
+              />
+              {renderItems()}
+              {!props.isFoldersOff &&
+                folders.map((folder, index) => (
+                  <Folder
+                    key={index}
+                    src={window.location.origin + "/images/folder.png"}
+                    isOpen={openStates[0][index]}
+                    onOpen={(isOpen) => handleFolderOpen(index, isOpen, 0)}
+                    isVisible={isFoldersVisible}
+                    hoverString={display_strings[index]}
+                    onHoverChange={(hoverState, _) =>
+                      handleFolderHoverChange(hoverState, index)
+                    }
+                    caption={folder}
+                    x={0}
+                    y={150 + 90 * (index + 1)}
+                    scale={0.5}
+                  />
+                ))}
+              {cursorString ? (
+                <div id="header-hover" className="bottom-left">
+                  {cursorString}
+                </div>
+              ) : (
+                <div className="bottom-left">{photoData.place}</div>
+              )}
+            </div>
+          </div>
+        </Fade>
+      </header>
+    </>
   );
-}
+};
+
+export default Header;
