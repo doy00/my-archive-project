@@ -1,0 +1,316 @@
+:root {
+  --white: rgba(255, 255, 255, 1);
+  --accents-red: rgba(255, 59, 48, 1);
+  --accents-red-dark: rgba(255, 69, 58, 1);
+  --accents-orange: rgba(255, 149, 0, 1);
+  --accents-orange-dark: rgba(255, 159, 10, 1);
+  --accents-yellow: rgba(255, 204, 0, 1);
+  --accents-yellow-dark: rgba(255, 214, 10, 1);
+  --accents-green: rgba(40, 205, 65, 1);
+  --accents-green-dark: rgba(50, 215, 75, 1);
+  --accents-mint: rgba(0, 199, 190, 1);
+  --accents-mint-dark: rgba(102, 212, 207, 1);
+  --accents-teal: rgba(89, 173, 196, 1);
+  --accents-teal-dark: rgba(106, 196, 220, 1);
+  --accents-cyan: rgba(85, 190, 240, 1);
+  --accents-cyan-dark: rgba(90, 200, 245, 1);
+  --accents-blue: rgba(0, 122, 255, 1);
+  --accents-blue-dark: rgba(10, 132, 255, 1);
+  --accents-indigo: rgba(88, 86, 214, 1);
+  --accents-indigo-dark: rgba(94, 92, 230, 1);
+  --accents-purple: rgba(175, 82, 222, 1);
+  --accents-purple-dark: rgba(191, 90, 242, 1);
+  --accents-pink: rgba(255, 45, 85, 1);
+  --accents-pink-dark: rgba(255, 55, 95, 1);
+  --accents-gray: rgba(142, 142, 147, 1);
+  --accents-gray-dark: rgba(152, 152, 157, 1);
+  --accents-brown: rgba(162, 132, 94, 1);
+  --accents-brown-dark: rgba(172, 142, 104, 1);
+  --accents-vibrant-red-dark: rgba(255, 79, 68, 1);
+  --accents-vibrant-orange-dark: rgba(255, 169, 20, 1);
+  --accents-vibrant-yellow-dark: rgba(255, 224, 20, 1);
+  --accents-vibrant-green-dark: rgba(60, 225, 85, 1);
+  --accents-vibrant-mint-dark: rgba(108, 224, 219, 1);
+  --accents-vibrant-teal-dark: rgba(68, 212, 250, 1);
+  --accents-vibrant-cyan-dark: rgba(90, 205, 250, 1);
+  --accents-vibrant-blue-dark: rgba(20, 142, 255, 1);
+  --accents-vibrant-indigo-dark: rgba(99, 97, 242, 1);
+  --accents-vibrant-purple-dark: rgba(204, 101, 255, 1);
+  --accents-vibrant-pink-dark: rgba(255, 65, 105, 1);
+  --accents-vibrant-brown-dark: rgba(182, 152, 114, 1);
+  --accents-vibrant-gray-dark: rgba(162, 162, 167, 1);
+  --fills-primary: rgba(0, 0, 0, 0.10);
+  --fills-secondary: rgba(0, 0, 0, 0.08);
+  --fills-tertiary: rgba(0, 0, 0, 0.05);
+  --fills-quaternary: rgba(0, 0, 0, 0.03);
+  --fills-quinary: rgba(0, 0, 0, 0.01);
+  --fills-primary-dark: rgba(255, 255, 255, 0.10);
+  --fills-secondary-dark: rgba(255, 255, 255, 0.08);
+  --fills-tertiary-dark: rgba(255, 255, 255, 0.05);
+  --fills-quaternary-dark: rgba(255, 255, 255, 0.03);
+  --fills-quinary-dark: rgba(255, 255, 255, 0.01);
+  --fills-vibrant-primary: rgba(217, 217, 217, 1);
+  --fills-vibrant-secondary: rgba(230, 230, 230, 1);
+  --fills-vibrant-tertiary: rgba(242, 242, 242, 1);
+  --fills-vibrant-quaternary: rgba(247, 247, 247, 1);
+  --fills-vibrant-quinary: rgba(251, 251, 251, 1);
+  --fills-vibrant-primary-dark: rgba(36, 36, 36, 1);
+  --fills-vibrant-secondary-dark: rgba(20, 20, 20, 1);
+  --fills-vibrant-tertiary-dark: rgba(13, 13, 13, 1);
+  --fills-vibrant-quaternary-dark: rgba(9, 9, 9, 1);
+  --fills-vibrant-quinary-dark: rgba(7, 7, 7, 1);
+  --text-primary: rgba(0, 0, 0, 0.85);
+  --text-secondary: rgba(0, 0, 0, 0.50);
+  --text-tertiary: rgba(0, 0, 0, 0.25);
+  --text-quaternary: rgba(0, 0, 0, 0.10);
+  --text-quinary: rgba(0, 0, 0, 0.05);
+  --text-primary-dark: rgba(255, 255, 255, 0.85);
+  --text-secondary-dark: rgba(255, 255, 255, 0.55);
+  --text-tertiary-dark: rgba(255, 255, 255, 0.25);
+  --text-quaternary-dark: rgba(255, 255, 255, 0.10);
+  --text-quinary-dark: rgba(255, 255, 255, 0.05);
+  --text-vibrant-primary: rgba(76, 76, 76, 1);
+  --text-vibrant-secondary: rgba(128, 128, 128, 1);
+  --text-vibrant-tertiary: rgba(191, 191, 191, 1);
+  --text-vibrant-quaternary: rgba(191, 191, 191, 1);
+  --text-vibrant-quinary: rgba(191, 191, 191, 1);
+  --text-vibrant-primary-dark: rgba(229, 229, 229, 1);
+  --text-vibrant-secondary-dark: rgba(124, 124, 124, 1);
+  --text-vibrant-tertiary-dark: rgba(65, 65, 65, 1);
+  --text-vibrant-quaternary-dark: rgba(65, 65, 65, 1);
+  --text-vibrant-quinary-dark: rgba(65, 65, 65, 1);
+  --materials-ultrathick: rgba(246, 246, 246, 0.84);
+  --materials-thick: rgba(246, 246, 246, 0.72);
+  --materials-medium: rgba(246, 246, 246, 0.60);
+  --materials-thin: rgba(246, 246, 246, 0.48);
+  --materials-ultrathin: rgba(246, 246, 246, 0.36);
+  --materials-ultrathick-dark: rgba(0, 0, 0, 0.50);
+  --materials-thick-dark: rgba(0, 0, 0, 0.40);
+  --materials-medium-dark: rgba(0, 0, 0, 0.29);
+  --materials-thin-dark: rgba(0, 0, 0, 0.20);
+  --materials-ultrathin-dark: rgba(0, 0, 0, 0.10);
+  --materials-controls-menu: rgba(40, 40, 40, 0.58);
+  --materials-controls-popover: rgba(0, 0, 0, 0.28);
+  --materials-controls-titlebar: rgba(234, 234, 234, 0.80);
+  --materials-controls-sidebar: rgba(234, 234, 234, 0.84);
+  --materials-controls-headerview: rgba(255, 255, 255, 0.80);
+  --materials-controls-tooltip: rgba(246, 246, 246, 0.60);
+  --materials-controls-underwindowbackground: rgba(246, 246, 246, 0.84);
+  --materials-controls-menu-dark: rgba(246, 246, 246, 0.72);
+  --materials-controls-popover-dark: rgba(246, 246, 246, 0.60);
+  --materials-controls-titlebar-dark: rgba(60, 60, 60, 0.80);
+  --materials-controls-sidebar-dark: rgba(0, 0, 0, 0.45);
+  --materials-controls-tooltip-dark: rgba(0, 0, 0, 0.35);
+  --materials-controls-underwindowbackground-dark: rgba(0, 0, 0, 0.45);
+  --materials-controls-fullscreen-dark: rgba(40, 40, 40, 0.50);
+  --materials-controls-hud-dark: rgba(40, 40, 40, 0.50);
+  --system-accents-red: rgba(255, 69, 58, 1);
+  --system-accents-orange: rgba(255, 159, 10, 1);
+  --system-accents-yellow: rgba(255, 214, 10, 1);
+  --system-accents-green: rgba(50, 215, 75, 1);
+  --system-accents-mint: rgba(102, 212, 207, 1);
+  --system-accents-teal: rgba(106, 196, 220, 1);
+  --system-accents-cyan: rgba(90, 200, 245, 1);
+  --system-accents-blue: rgba(10, 132, 255, 1);
+  --system-accents-indigo: rgba(94, 92, 230, 1);
+  --system-accents-purple: rgba(191, 90, 242, 1);
+  --system-accents-pink: rgba(255, 55, 95, 1);
+  --system-accents-gray: rgba(152, 152, 157, 1);
+  --system-accents-brown: rgba(172, 142, 104, 1);
+  --system-fills-opaque-primary: rgba(255, 255, 255, 0.10);
+  --system-fills-opaque-secondary: rgba(255, 255, 255, 0.08);
+  --system-fills-opaque-tertiary: rgba(255, 255, 255, 0.05);
+  --system-fills-opaque-quaternary: rgba(255, 255, 255, 0.03);
+  --system-fills-opaque-quinary: rgba(255, 255, 255, 0.02);
+  --system-fills-vibrantblendingmodeplusdarkerpluslighter-primary: rgba(36, 36, 36, 1);
+  --system-fills-vibrantblendingmodeplusdarkerpluslighter-secondary: rgba(20, 20, 20, 1);
+  --system-fills-vibrantblendingmodeplusdarkerpluslighter-tertiary: rgba(13, 13, 13, 1);
+  --system-fills-vibrantblendingmodeplusdarkerpluslighter-quaternary: rgba(9, 9, 9, 1);
+  --system-fills-vibrantblendingmodeplusdarkerpluslighter-quinary: rgba(7, 7, 7, 1);
+  --system-text-opaque-primary: rgba(255, 255, 255, 0.85);
+  --system-text-opaque-secondary: rgba(255, 255, 255, 0.55);
+  --system-text-opaque-tertiary: rgba(255, 255, 255, 0.25);
+  --system-text-opaque-quaternary: rgba(255, 255, 255, 0.10);
+  --system-text-opaque-quinary: rgba(255, 255, 255, 0.05);
+  --system-text-opaque-white: rgba(255, 255, 255, 1);
+  --system-text-vibrantblendingmodepluslighterplusdarker-primary: rgba(229, 229, 229, 1);
+  --system-text-vibrantblendingmodepluslighterplusdarker-secondary: rgba(124, 124, 124, 1);
+  --system-text-vibrantblendingmodepluslighterplusdarker-tertiary: rgba(65, 65, 65, 1);
+  --system-text-vibrantblendingmodepluslighterplusdarker-quaternary: rgba(35, 35, 35, 1);
+  --system-text-vibrantblendingmodepluslighterplusdarker-quinary: rgba(17, 17, 17, 1);
+  --system-material-ultrathick: rgba(40, 40, 40, 0.80);
+  --system-material-thick: rgba(40, 40, 40, 0.70);
+  --system-material-medium: rgba(40, 40, 40, 0.60);
+  --system-material-thin: rgba(40, 40, 40, 0.50);
+  --system-material-ultrathin: rgba(40, 40, 40, 0.40);
+  --system-checkbox-checkboxenabled: rgba(255, 255, 255, 0.20);
+  --system-checkbox-checkboxdisabled: rgba(255, 255, 255, 0.10);
+  --system-miscellaneous-arrowbuttonbackground-enabled: rgba(255, 255, 255, 0.10);
+  --system-miscellaneous-arrowbuttonbackground-disabled: rgba(255, 255, 255, 0.05);
+  --system-mode: Dark;
+  --font-largetitle-regular-size: 26px;
+  --font-largetitle-regular-weight: 400;
+  --font-largetitle-regular-lineheight: 32px;
+  --font-largetitle-regular-family: 'SF Pro', sans-serif;
+  --font-largetitle-emphasized-size: 26px;
+  --font-largetitle-emphasized-weight: 700;
+  --font-largetitle-emphasized-lineheight: 32px;
+  --font-largetitle-emphasized-family: 'SF Pro', sans-serif;
+  --font-title1-regular-size: 22px;
+  --font-title1-regular-weight: 400;
+  --font-title1-regular-lineheight: 26px;
+  --font-title1-regular-family: 'SF Pro', sans-serif;
+  --font-title1-emphasized-size: 22px;
+  --font-title1-emphasized-weight: 700;
+  --font-title1-emphasized-lineheight: 26px;
+  --font-title1-emphasized-family: 'SF Pro', sans-serif;
+  --font-title2-regular-size: 17px;
+  --font-title2-regular-weight: 400;
+  --font-title2-regular-lineheight: 22px;
+  --font-title2-regular-family: 'SF Pro', sans-serif;
+  --font-title2-emphasized-size: 17px;
+  --font-title2-emphasized-weight: 700;
+  --font-title2-emphasized-lineheight: 22px;
+  --font-title2-emphasized-family: 'Inter', sans-serif;
+  --font-title3-regular-size: 15px;
+  --font-title3-regular-weight: 400;
+  --font-title3-regular-lineheight: 20px;
+  --font-title3-regular-family: 'SF Pro', sans-serif;
+  --font-title3-emphasized-size: 15px;
+  --font-title3-emphasized-weight: 600;
+  --font-title3-emphasized-lineheight: 20px;
+  --font-title3-emphasized-family: 'SF Pro', sans-serif;
+  --font-headline-regular-size: 13px;
+  --font-headline-regular-weight: 700;
+  --font-headline-regular-lineheight: 16px;
+  --font-headline-regular-family: 'SF Pro', sans-serif;
+  --font-headline-emphasized-size: 13px;
+  --font-headline-emphasized-weight: 900;
+  --font-headline-emphasized-lineheight: 16px;
+  --font-headline-emphasized-family: 'SF Pro', sans-serif;
+  --font-body-regular-size: 13px;
+  --font-body-regular-weight: 400;
+  --font-body-regular-lineheight: 16px;
+  --font-body-regular-family: 'SF Pro', sans-serif;
+  --font-body-emphasized-size: 13px;
+  --font-body-emphasized-weight: 600;
+  --font-body-emphasized-lineheight: 16px;
+  --font-body-emphasized-family: 'SF Pro', sans-serif;
+  --font-callout-regular-size: 12px;
+  --font-callout-regular-weight: 400;
+  --font-callout-regular-lineheight: 15px;
+  --font-callout-regular-family: 'SF Pro', sans-serif;
+  --font-callout-emphasized-size: 12px;
+  --font-callout-emphasized-weight: 600;
+  --font-callout-emphasized-lineheight: 15px;
+  --font-callout-emphasized-family: 'SF Pro', sans-serif;
+  --font-subheadline-regular-size: 11px;
+  --font-subheadline-regular-weight: 400;
+  --font-subheadline-regular-lineheight: 14px;
+  --font-subheadline-regular-family: 'SF Pro', sans-serif;
+  --font-subheadline-emphasized-size: 11px;
+  --font-subheadline-emphasized-weight: 600;
+  --font-subheadline-emphasized-lineheight: 14px;
+  --font-subheadline-emphasized-family: 'SF Pro', sans-serif;
+  --font-footnote-regular-size: 10px;
+  --font-footnote-regular-weight: 400;
+  --font-footnote-regular-lineheight: 13px;
+  --font-footnote-regular-family: 'SF Pro', sans-serif;
+  --font-footnote-emphasized-size: 10px;
+  --font-footnote-emphasized-weight: 600;
+  --font-footnote-emphasized-lineheight: 13px;
+  --font-footnote-emphasized-family: 'SF Pro', sans-serif;
+  --font-caption1-regular-size: 10px;
+  --font-caption1-regular-weight: 400;
+  --font-caption1-regular-lineheight: 13px;
+  --font-caption1-regular-family: 'SF Pro', sans-serif;
+  --font-caption1-emphasized-size: 10px;
+  --font-caption1-emphasized-weight: 500;
+  --font-caption1-emphasized-lineheight: 13px;
+  --font-caption1-emphasized-family: 'SF Pro', sans-serif;
+  --font-caption2-regular-size: 10px;
+  --font-caption2-regular-weight: 500;
+  --font-caption2-regular-lineheight: 13px;
+  --font-caption2-regular-family: 'SF Pro', sans-serif;
+  --font-caption2-emphasized-size: 10px;
+  --font-caption2-emphasized-weight: 600;
+  --font-caption2-emphasized-lineheight: 13px;
+  --font-caption2-emphasized-family: 'SF Pro', sans-serif;
+}
+/* Utility Classes */
+.material-ultrathick {
+  background-color: var(--materials-ultrathick);
+  backdrop-filter: blur(20px);
+}
+
+.material-thick {
+  background-color: var(--materials-thick);
+  backdrop-filter: blur(15px);
+}
+
+.material-medium {
+  background-color: var(--materials-medium);
+  backdrop-filter: blur(10px);
+}
+
+.material-thin {
+  background-color: var(--materials-thin);
+  backdrop-filter: blur(5px);
+}
+
+.material-ultrathin {
+  background-color: var(--materials-ultrathin);
+  backdrop-filter: blur(2px);
+}
+
+/* Dark mode materials */
+.dark .material-ultrathick {
+  background-color: var(--materials-ultrathick-dark);
+}
+
+.dark .material-thick {
+  background-color: var(--materials-thick-dark);
+}
+
+.dark .material-medium {
+  background-color: var(--materials-medium-dark);
+}
+
+.dark .material-thin {
+  background-color: var(--materials-thin-dark);
+}
+
+.dark .material-ultrathin {
+  background-color: var(--materials-ultrathin-dark);
+}
+
+/* Typography utilities */
+.text-large-title {
+  font-size: var(--font-largetitle-regular-size);
+  font-weight: var(--font-largetitle-regular-weight);
+  line-height: var(--font-largetitle-regular-lineheight);
+}
+
+.text-title1 {
+  font-size: var(--font-title1-regular-size);
+  font-weight: var(--font-title1-regular-weight);
+  line-height: var(--font-title1-regular-lineheight);
+}
+
+.text-title2 {
+  font-size: var(--font-title2-regular-size);
+  font-weight: var(--font-title2-regular-weight);
+  line-height: var(--font-title2-regular-lineheight);
+}
+
+.text-body {
+  font-size: var(--font-body-regular-size);
+  font-weight: var(--font-body-regular-weight);
+  line-height: var(--font-body-regular-lineheight);
+}
+
+.text-caption {
+  font-size: var(--font-caption1-regular-size);
+  font-weight: var(--font-caption1-regular-weight);
+  line-height: var(--font-caption1-regular-lineheight);
+}
